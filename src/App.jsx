@@ -1,7 +1,7 @@
-import Navbar from "./components/Navbar/Navbar"
-import "./layout.scss"
 import HomePage from "./routes/homePage/homePage"   
 import ListPage from "./routes/listPage/listPage"  
+import Layout from "./routes/layout/layout"
+import SinglePage from "./routes/singlePage/singlePage";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -15,12 +15,22 @@ function App()
     {
       path: "/",
       element: (
-       <HomePage />
+       <Layout />
       ),
-    },
-    {
-      path: "/list",
-      element: <ListPage/>,
+      children: [
+        {
+          path: "/",
+          element: <HomePage/>,
+        },
+        {
+          path: "/list",
+          element: <ListPage/>,
+        },
+        {
+          path: "/:id",
+          element: <SinglePage/>,
+        },
+      ],
     },
   ]);
   return (
